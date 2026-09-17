@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Antiquarian Review | Student Journal of History</title>
+    <meta name="description" content="A student-led digital journal dedicated to rigorous historical scholarship and primary source analysis.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: '#FAF9F6',
+                        ink: '#1A1A1A',
+                        crimson: '#7A1C1C',
+                        slate: '#4A4A4A'
+                    },
+                    fontFamily: {
+                        heading: ['"Playfair Display"', 'serif'],
+                        body: ['"Lora"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF9F6; /* subtle parchment color */
+            color: #1A1A1A;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .view-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .drop-cap:first-letter {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 0.8;
+            padding-right: 0.5rem;
+            padding-top: 0.2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            color: #1A1A1A;
+        }
+
+        /* Stylized divider */
+        .ornate-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #4A4A4A, transparent);
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="font-body text-ink min-h-screen flex flex-col">
+
+    <header class="w-full max-w-6xl mx-auto px-4 pt-12 pb-6 text-center">
+        <h2 class="text-sm tracking-[0.2em] text-slate uppercase mb-4">A Student-Led Academic Publication</h2>
+        <h1 class="font-heading text-5xl md:text-7xl font-black text-ink tracking-tight mb-4">
+            The Antiquarian Review
+        </h1>
+        <p class="font-heading text-xl md:text-2xl italic text-slate max-w-2xl mx-auto">
+            "Preserving the past through rigorous inquiry and primary analysis."
+        </p>
+    </header>
+
+    <nav class="w-full max-w-6xl mx-auto px-4 mb-10">
+        <div class="border-y-2 border-ink py-3">
+            <ul class="flex flex-wrap justify-center gap-6 md:gap-12 text-sm md:text-base font-semibold tracking-wider uppercase">
+                <li><a href="#" onclick="navigate('home')" class="hover:text-crimson transition-colors" id="nav-home">Current Issue</a></li>
+                <li><a href="#" onclick="navigate('guidelines')" class="hover:text-crimson transition-colors" id="nav-guidelines">Submission Guidelines</a></li>
+                <li><a href="#" onclick="navigate('masthead')" class="hover:text-crimson transition-colors" id="nav-masthead">Masthead</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-6xl mx-auto px-4 flex-grow pb-16">
+        
+        <!-- HOME VIEW (Current Issue) -->
+        <div id="view-home" class="view-section active">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-8">
+                    <h3 class="font-heading text-3xl font-bold border-b border-gray-300 pb-2 mb-8">Volume I, Issue 1: Fall 2026</h3>
+                    
+                    <!-- Featured Article -->
+                    <article class="mb-12 group cursor-pointer" onclick="openModal('article-modal')">
+                        <img src="https://placehold.co/800x400/2c2c2c/FAF9F6?text=Historical+Artifacts+Archive" alt="Historical Militaria" class="w-full h-64 object-cover mb-6 border border-gray-300">
+                        <span class="text-crimson text-xs font-bold uppercase tracking-widest">Material Culture</span>
+                        <h4 class="font-heading text-3xl font-bold mt-2 mb-3 group-hover:text-crimson transition-colors">Preservation and Analysis of Imperial German Militaria: A Methodological Approach</h4>
+                        <p class="text-sm text-slate mb-4">By Editor-in-Chief &bull; Peer Reviewed</p>
+                        <p class="drop-cap text-lg leading-relaxed mb-4">
+                            The physical preservation of historical artifacts offers an unparalleled, tactile connection to the geopolitical realities of the early 20th century. This paper examines the microcrystalline wax restoration techniques applied to a 1914 Iron Cross, contextualizing the artifact within the broader logistical framework of the Imperial German war economy. By analyzing maker marks and material degradation, we can deduce supply chain limitations on the Western Front...
+                        </p>
+                        <span class="text-crimson font-semibold hover:underline">Read Full Article &rarr;</span>
+                    </article>
+
+                    <div class="ornate-divider"></div>
+
+                    <!-- Secondary Articles List -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <article class="group cursor-pointer">
+                            <span class="text-crimson text-xs font-bold uppercase tracking-widest">Military History</span>
+                            <h4 class="font-heading text-xl font-bold mt-2 mb-2 group-hover:text-crimson transition-colors">Logistical Triumphs of the Roman Legion: A Quantitative Analysis</h4>
+                            <p class="text-xs text-slate mb-3">By Marcus V. &bull; Peer Reviewed</p>
+                            <p class="text-sm leading-relaxed">Evaluating the supply line architecture of the Marian reforms. How grain distribution and standardized equipment quotas allowed unprecedented territorial expansion.</p>
+                        </article>
+                        
+                        <article class="group cursor-pointer">
+                            <span class="text-crimson text-xs font-bold uppercase tracking-widest">Diplomatic History</span>
+                            <h4 class="font-heading text-xl font-bold mt-2 mb-2 group-hover:text-crimson transition-colors">The Telegrams of July 1914: Miscommunication or Intent?</h4>
+                            <p class="text-xs text-slate mb-3">By Sarah J. &bull; Peer Reviewed</p>
+                            <p class="text-sm leading-relaxed">A structural linguistic analysis of the correspondence between Wilhelm II and Nicholas II in the days preceding the outbreak of the First World War.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <aside class="lg:col-span-4 space-y-10">
+                    
+                    <!-- Call for Papers Card -->
+                    <div class="bg-white border border-gray-300 p-8 shadow-sm">
+                        <h4 class="font-heading text-2xl font-bold mb-4 text-center">Call for Papers</h4>
+                        <p class="text-sm text-center mb-6 leading-relaxed">
+                            The Antiquarian Review is actively seeking submissions for its upcoming Winter issue. We invite rigorous, original research from high school historians.
+                        </p>
+                        <ul class="text-sm space-y-2 mb-8 text-slate">
+                            <li class="flex items-start"><span class="text-crimson mr-2">&#10003;</span> Primary sources strictly required.</li>
+                            <li class="flex items-start"><span class="text-crimson mr-2">&#10003;</span> Chicago Manual of Style formatting.</li>
+                            <li class="flex items-start"><span class="text-crimson mr-2">&#10003;</span> 1,200 - 3,000 word count.</li>
+                        </ul>
+                        <button onclick="openModal('submit-modal')" class="w-full bg-ink text-parchment py-3 px-4 font-semibold hover:bg-crimson transition-colors uppercase tracking-wider text-sm">
+                            Submit an Article
+                        </button>
+                    </div>
+
+                    <!-- Editorial Board Highlight -->
+                    <div class="border-t-2 border-b-2 border-ink py-6">
+                        <h4 class="font-heading text-xl font-bold mb-4">The Editorial Board</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="font-bold text-sm uppercase tracking-wider">Editor-in-Chief</p>
+                                <p class="font-heading text-lg italic text-slate">Lead Historian & Founder</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-sm uppercase tracking-wider">Managing Editors</p>
+                                <p class="font-heading text-md italic text-slate">History Journal Club Members</p>
+                            </div>
+                            <button onclick="navigate('masthead')" class="mt-4 text-sm text-crimson font-semibold hover:underline">View Full Masthead &rarr;</button>
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+
+        <div id="view-guidelines" class="view-section max-w-4xl mx-auto">
+            <h3 class="font-heading text-4xl font-bold border-b border-gray-300 pb-4 mb-8">Submission Guidelines</h3>
+            <div class="prose prose-stone lg:prose-lg text-ink max-w-none space-y-6">
+                <p class="text-xl italic text-slate mb-8">The Antiquarian Review maintains strict university-level standards for all published student work. Please review our criteria before submitting your manuscript.</p>
+                
+                <h4 class="font-heading text-2xl font-bold mt-8">1. Academic Rigor and Originality</h4>
+                <p>All submissions must represent original historical research. We do not publish standard school essays or unanalyzed summaries of historical events. Your paper must present a distinct thesis and defend it using documented evidence.</p>
+                
+                <h4 class="font-heading text-2xl font-bold mt-8">2. Primary Source Requirement</h4>
+                <p>A hallmark of our journal is the emphasis on primary documents. Papers must heavily utilize and directly quote from primary sources (e.g., archival letters, treaties, original maps, material artifacts, period-specific newspaper clippings).</p>
+                
+                <h4 class="font-heading text-2xl font-bold mt-8">3. Formatting and Citations</h4>
+                <p>We strictly adhere to the <strong>Chicago Manual of Style (Notes and Bibliography format)</strong>. All claims must be supported by footnotes. Submissions lacking proper footnotes or a comprehensive bibliography will be returned without review.</p>
+
+                <div class="bg-gray-100 p-6 border-l-4 border-crimson my-8">
+                    <h5 class="font-bold uppercase tracking-wider text-sm mb-2">The Review Process</h5>
+                    <p class="text-sm">Upon submission, your manuscript will undergo a blind peer-review process by our Editorial Board. You will receive structured feedback within 14 days, detailing required revisions or acceptance status.</p>
+                </div>
+
+                <div class="text-center mt-12">
+                    <button onclick="openModal('submit-modal')" class="bg-crimson text-parchment py-4 px-8 font-semibold hover:bg-ink transition-colors uppercase tracking-wider">
+                        Access Submission Portal
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-masthead" class="view-section max-w-4xl mx-auto text-center">
+            <h3 class="font-heading text-4xl font-bold border-b border-gray-300 pb-4 mb-12">Masthead & Editorial Board</h3>
+            
+            <div class="mb-16">
+                <h4 class="text-xs uppercase tracking-[0.2em] font-bold text-slate mb-2">Founder & Editor-in-Chief</h4>
+                <p class="font-heading text-3xl mb-4">Head Historian</p>
+                <p class="max-w-xl mx-auto text-sm text-slate italic">Responsible for final publication decisions, maintaining academic integrity, and guiding the overall scholarly direction of the journal.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h4 class="text-xs uppercase tracking-[0.2em] font-bold text-slate mb-2">Managing Editor of Antiquities</h4>
+                    <p class="font-heading text-xl mb-2">Senior Club Member</p>
+                    <p class="text-sm text-slate italic">Oversees submissions related to material culture, artifacts, and archaeological interpretation.</p>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase tracking-[0.2em] font-bold text-slate mb-2">Managing Editor of Geopolitics</h4>
+                    <p class="font-heading text-xl mb-2">Senior Club Member</p>
+                    <p class="text-sm text-slate italic">Specializes in the peer review of military strategy, diplomatic correspondence, and international relations history.</p>
+                </div>
+            </div>
+            
+            <div class="ornate-divider"></div>
+            
+            <div class="mt-12 text-sm text-slate max-w-2xl mx-auto">
+                <p>The Antiquarian Review is operated entirely by the History Journal Club. The digital infrastructure of this publication is open-source and maintained by the Editor-in-Chief.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-ink text-parchment py-12 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h2 class="font-heading text-2xl font-bold mb-2">The Antiquarian Review</h2>
+                <p class="text-sm text-gray-400">A rigorous student publication. For the preservation of the past.</p>
+            </div>
+            <div class="text-sm text-gray-400">
+                <p>&copy; 2026 History Journal Club.</p>
+                <p>Site architecture designed & developed in-house.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Submit Modal -->
+    <div id="submit-modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-parchment w-full max-w-2xl p-8 shadow-2xl relative border-t-4 border-crimson">
+            <button onclick="closeModal('submit-modal')" class="absolute top-4 right-4 text-3xl font-bold text-slate hover:text-ink">&times;</button>
+            <h3 class="font-heading text-3xl font-bold mb-2">Submit Your Manuscript</h3>
+            <p class="text-sm text-slate mb-6">Upload your paper via our secure editorial portal. Ensure your document is formatted as a .DOCX or .PDF.</p>
+            
+            <form onsubmit="handleMockSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-bold mb-1">Author Name(s)</label>
+                    <input type="text" required class="w-full border border-gray-300 p-3 bg-white focus:outline-none focus:border-crimson">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-bold mb-1">Paper Title</label>
+                    <input type="text" required class="w-full border border-gray-300 p-3 bg-white focus:outline-none focus:border-crimson">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-bold mb-1">Upload Document</label>
+                    <input type="file" required class="w-full border border-gray-300 p-2 bg-white text-sm file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-ink hover:file:bg-gray-200">
+                </div>
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-crimson text-parchment py-3 font-semibold hover:bg-ink transition-colors uppercase tracking-wider">
+                        Transmit to Editorial Board
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Article Modal (Mock View for Featured Article) -->
+    <div id="article-modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm overflow-y-auto">
+        <div class="bg-parchment w-full max-w-4xl p-8 md:p-12 shadow-2xl relative my-8">
+            <button onclick="closeModal('article-modal')" class="absolute top-4 right-6 text-4xl font-bold text-slate hover:text-ink">&times;</button>
+            
+            <span class="text-crimson text-sm font-bold uppercase tracking-widest block mb-4 text-center">Material Culture</span>
+            <h2 class="font-heading text-3xl md:text-5xl font-bold text-center mb-6 leading-tight">Preservation and Analysis of Imperial German Militaria: A Methodological Approach</h2>
+            <div class="text-center mb-10 border-b border-gray-300 pb-6">
+                <p class="font-bold">Editor-in-Chief</p>
+                <p class="text-sm text-slate italic">The Antiquarian Review &bull; Vol I, Issue 1</p>
+            </div>
+            
+            <div class="prose prose-stone lg:prose-lg max-w-none mx-auto text-ink font-body">
+                <p class="drop-cap">The physical preservation of historical artifacts offers an unparalleled, tactile connection to the geopolitical realities of the early 20th century. This paper examines the microcrystalline wax restoration techniques applied to a 1914 Iron Cross, contextualizing the artifact within the broader logistical framework of the Imperial German war economy.</p>
+                <p>By analyzing maker marks and material degradation, we can deduce supply chain limitations on the Western Front. The substitution of brass for lower-quality alloys in later-war productions provides a metallurgical timeline of the British naval blockade's efficacy.</p>
+                <p><em>(End of preview. In a production environment, the full academic text, replete with Chicago-style footnotes and primary source imagery, would follow here.)</em></p>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <button onclick="closeModal('article-modal')" class="bg-ink text-parchment py-2 px-6 font-semibold hover:bg-slate transition-colors text-sm uppercase tracking-wider">
+                    Return to Journal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple View Router
+        function navigate(viewId) {
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Show targeted view
+            document.getElementById('view-' + viewId).classList.add('active');
+            
+            // Update active state on nav links
+            document.querySelectorAll('nav a').forEach(el => {
+                el.classList.remove('text-crimson');
+                el.classList.add('text-ink');
+            });
+            document.getElementById('nav-' + viewId).classList.remove('text-ink');
+            document.getElementById('nav-' + viewId).classList.add('text-crimson');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Modal Logic
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Mock Submission Handler (replaces alert)
+        function handleMockSubmit(event) {
+            event.preventDefault();
+            
+            // Create a custom styled message box dynamically instead of using alert()
+            const msgBox = document.createElement('div');
+            msgBox.className = 'absolute inset-0 flex items-center justify-center bg-parchment z-50 p-8 text-center flex-col';
+            msgBox.innerHTML = `
+                <div class="text-4xl text-green-700 mb-4">&#10003;</div>
+                <h3 class="font-heading text-2xl font-bold mb-2">Submission Received</h3>
+                <p class="text-sm text-slate mb-6">Your manuscript has been uploaded to the editorial queue for peer review. Thank you for your contribution to historical scholarship.</p>
+                <button onclick="this.parentElement.remove(); closeModal('submit-modal'); event.target.reset();" class="bg-ink text-parchment py-2 px-6 hover:bg-slate transition-colors uppercase tracking-wider text-sm font-semibold">Return</button>
+            `;
+            
+            const formContainer = event.target.closest('.bg-parchment');
+            formContainer.appendChild(msgBox);
+        }
+
+        // Initialize active nav state on load
+        document.getElementById('nav-home').classList.add('text-crimson');
+    </script>
+</body>
+</html>
